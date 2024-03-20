@@ -7,6 +7,9 @@
 #include "GameFramework/GameModeBase.h"
 #include "ArraysEnzoGameMode.generated.h"
 
+
+
+
 UCLASS(minimalapi)
 class AArraysEnzoGameMode : public AGameModeBase
 {
@@ -23,9 +26,4 @@ public:
 };
 
 
-UENUM(BlueprintType)
-enum class E_ItemType : uint8 {
-	IT_Bow          UMETA(DisplayName="Bowow"),
-	IT_Sword        UMETA(DisplayName="Swordord"),
-};
 

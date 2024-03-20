@@ -8,6 +8,12 @@
 #include "UObject/Interface.h"
 #include "InventoryManager.generated.h"
 
+UENUM(BlueprintType)
+enum class E_ItemType : uint8 {
+	IT_Bow          UMETA(DisplayName="Bowow"),
+	IT_Sword        UMETA(DisplayName="Swordord"),
+};
+
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI, Blueprintable)
 class UInventoryManager : public UInterface
