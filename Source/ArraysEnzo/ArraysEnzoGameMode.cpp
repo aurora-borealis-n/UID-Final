@@ -13,3 +13,17 @@ AArraysEnzoGameMode::AArraysEnzoGameMode()
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
 }
+
+IInventoryManager* AArraysEnzoGameMode::GetInventoryManager()
+{
+	if(InventoryMan == nullptr)
+	{
+		InventoryMan = new InventoryManager();
+	}
+	return InventoryMan;
+}
+
+void AArraysEnzoGameMode::AddItem(E_ItemType item)
+{
+	GetInventoryManager()->AddItem(item);
+}
