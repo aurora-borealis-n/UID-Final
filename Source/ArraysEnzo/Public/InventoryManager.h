@@ -3,19 +3,16 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "StructsAndEnums.h"
 #include "Engine/UserDefinedStruct.h"
 #include "Engine/UserDefinedEnum.h"
 #include "UObject/Interface.h"
 #include "InventoryManager.generated.h"
 
-UENUM(BlueprintType)
-enum class E_ItemType : uint8 {
-	IT_Bow          UMETA(DisplayName="Bowow"),
-	IT_Sword        UMETA(DisplayName="Swordord"),
-};
+
 
 // This class does not need to be modified.
-UINTERFACE(MinimalAPI, Blueprintable)
+UINTERFACE(MinimalAPI, BlueprintType, Meta=(CannotImplementInterfaceInBlueprint))
 class UInventoryManager : public UInterface
 {
 	GENERATED_BODY()
@@ -30,19 +27,34 @@ class ARRAYSENZO_API IInventoryManager
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
+	UFUNCTION(BlueprintCallable)
 	virtual void AddItem(E_ItemType item) = 0;
-	virtual void GetItem(int index) = 0;
+	UFUNCTION(BlueprintCallable)
+	virtual E_ItemType GetItem(int index) = 0;
+	UFUNCTION(BlueprintCallable)
 	virtual void RemoveItem(int index) = 0;
-};
+	UFUNCTION(BlueprintCallable)
+	virtual FString PrintItems() = 0;
+	UFUNCTION(BlueprintCallable)
+	virtual TArray<FInventorySlots> GetAllItems() = 0;
+  };
 
-
-class ARRAYSENZO_API InventoryManager : public IInventoryManager
+UCLASS(BlueprintType)
+class ARRAYSENZO_API UInventory : public UClass, public IInventoryManager
 {
-	TArray<UUserDefinedStruct*> Items;
+	GENERATED_BODY()
+	int MaxSize = 10;
+	TArray<FInventorySlots> Items;
 public:
+
+
+	UInventory() {  }
 	void AddItem(E_ItemType item) override;
-	void GetItem(int index) override;
+	E_ItemType GetItem(int index) override;
 	void RemoveItem(int index) override;
+	TArray<FInventorySlots> GetAllItems() override;
+	
+	FString PrintItems() override;
 };
 
 

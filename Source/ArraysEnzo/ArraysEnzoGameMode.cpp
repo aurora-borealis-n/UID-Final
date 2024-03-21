@@ -14,16 +14,16 @@ AArraysEnzoGameMode::AArraysEnzoGameMode()
 	}
 }
 
-IInventoryManager* AArraysEnzoGameMode::GetInventoryManager()
+TScriptInterface<IInventoryManager> AArraysEnzoGameMode::GetInventoryManager()
 {
-	if(InventoryMan == nullptr)
+	if(InventoryManager == nullptr)
 	{
-		InventoryMan = new InventoryManager();
+		InventoryManager = NewObject<UInventory>();
 	}
-	return InventoryMan;
+	
+	return InventoryManager;
 }
 
-void AArraysEnzoGameMode::AddItem(E_ItemType item)
-{
-	GetInventoryManager()->AddItem(item);
-}
+
+
+

@@ -15,14 +15,14 @@ class AArraysEnzoGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
-	IInventoryManager* InventoryMan;
+	TScriptInterface<IInventoryManager> InventoryManager;
+	// UInventory* InventoryMan;
 public:
 	AArraysEnzoGameMode();
 
-	IInventoryManager* GetInventoryManager();
-
 	UFUNCTION(BlueprintCallable)
-	void AddItem(E_ItemType item);
+	TScriptInterface<IInventoryManager> GetInventoryManager();
+	
 };
 
 
